@@ -1,0 +1,16 @@
+query {
+  search(query: "stars:>1000", type: REPOSITORY, first: 10) {
+    repositoryCount
+    nodes {
+      ... on Repository {
+        nameWithOwner
+        description
+        stargazerCount
+        url
+        primaryLanguage {
+          name
+        }
+      }
+    }
+  }
+}
