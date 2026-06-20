@@ -12,16 +12,16 @@ sudo apt install jq curl
 
 2. Rename ".env.example" file to ".env"
 3. Write your GitHub access token in front of GITHUB_TOKEN inside ".env"
-4. Make "fetch_data.sh" file executable
+4. Make "start.sh" file executable
 
 ```bash
-chmod +x fetch_data.sh
+chmod +x start.sh
 ```
 
 5. Open the repo in terminal then:
 
 ```bash
-./fetch_data.sh
+./start.sh
 ```
 
 6. Check "results.json" for results
