@@ -1,16 +1,29 @@
-query {
-  search(query: "stars:>1000", type: REPOSITORY, first: 10) {
-    repositoryCount
+query (
+  $searchQuery: String! = ""
+  $searchType: SearchType! = ISSUE
+  $searchFirst: Int! = 1
+  $getIssueCount: Boolean! = false
+  $getPushedAt: Boolean! = false
+  $getStargazerCount: Boolean! = false
+  $getUrl: Boolean! = false
+) {
+  search(query: $searchQuery, type: $searchType, first: $searchFirst) {
+    issueCount @include(if: $getIssueCount)
     nodes {
-      ... on Repository {
-        nameWithOwner
-        description
-        stargazerCount
-        url
-        primaryLanguage {
-          name
+      ... on Issue {
+        url @include(if: $getUrl)
+        repository {
+          stargazerCount @include(if: $getStargazerCount)
+          pushedAt @include(if: $getPushedAt)
         }
       }
     }
+  }
+  rateLimit {
+    cost
+    remaining
+    limit
+    used
+    resetAt
   }
 }
