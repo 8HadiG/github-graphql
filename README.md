@@ -10,18 +10,20 @@ Search across GitHub via its GraphQL API for Unix/Linux.
 sudo apt install jq curl
 ```
 
-2. Rename the `.env.example` file to `.env`.
-3. Write your GitHub access token after `GITHUB_TOKEN=` inside the `.env` file.
-4. Make `start.sh` file executable.
+2. Optional: If you are using `VS Code`, you can install `GraphQL: Language Feature Support` extension.
+3. Rename the `.env.example` file to `.env`.
+4. Write your GitHub access token after `GITHUB_TOKEN=` inside the `.env` file.
+5. Make `start.sh` file executable.
 
 ```bash
 chmod +x start.sh
 ```
 
-5. Open the repository in your terminal, then run:
+6. Feel free to change values from `variables.json` file.
+7. Open the repository in your terminal, then run:
 
 ```bash
 ./start.sh
 ```
 
-6. Check `results.json` for the output.
+8. Check `results.json` for the output.
