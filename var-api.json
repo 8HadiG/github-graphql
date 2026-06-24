@@ -1,7 +1,7 @@
 {
     "searchQuery": "in:body language:JavaScript label:\"good first issue\" label:\"help wanted\" no:milestone interactions:<1 -linked:pr no:assignee is:open is:issue archived:false is:unlocked sort:created-desc",
     "searchType": "ISSUE",
-    "searchFirst": 3,
+    "searchFirst": 100,
     "getIssueCount": true,
     "getPushedAt": true,
     "getStargazerCount": true,

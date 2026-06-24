@@ -5,7 +5,7 @@ source .env
 
 # Read the GraphQL query from file (remove newlines and escape quotes)
 QUERY=$(jq -Rs . < query.graphql)
-VARIABLES=$(cat variables.json)
+VARIABLES=$(cat var-api.json)
 
 # Create the JSON payload
 JSON_PAYLOAD="{\"query\":$QUERY,\"variables\":$VARIABLES}"
@@ -18,5 +18,6 @@ curl -X POST \
   https://api.github.com/graphql \
   -o curl_output.json
 
-cat curl_output.json | jq '.' > results.json
+jq --slurpfile vars var-jq.json -f filter.jq curl_output.json > results.json
+
 echo "results saved to results.json"
