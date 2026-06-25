@@ -1,9 +1,11 @@
 {
-    "searchQuery": "in:body language:JavaScript label:\"good first issue\" label:\"help wanted\" no:milestone interactions:<1 -linked:pr no:assignee is:open is:issue archived:false is:unlocked sort:created-desc",
-    "searchType": "ISSUE",
-    "searchFirst": 100,
     "getIssueCount": true,
+    "getPageInfo": true,
     "getPushedAt": true,
     "getStargazerCount": true,
-    "getUrl": true
+    "getUrl": true,
+    "searchAfter": null,
+    "searchFirst": 100,
+    "searchQuery": "in:body language:JavaScript label:\"good first issue\" label:\"help wanted\" no:milestone interactions:<1 -linked:pr no:assignee is:open is:issue archived:false is:unlocked sort:created-desc",
+    "searchType": "ISSUE"
 }
