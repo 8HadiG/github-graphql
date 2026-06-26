@@ -1,5 +1,6 @@
 export default function filterResponse(data, searchType, filterVars) {
   // Declares if filters are available for this searchType
+  let supportedDataSize = true;
   let supportedSearchType = true;
 
   const search = data.data.search;
@@ -10,7 +11,10 @@ export default function filterResponse(data, searchType, filterVars) {
   }
 
   search.nodes = search.nodes.filter((node) => {
-    if (searchType === "REPOSITORY") {
+    if (node === null) {
+      supportedDataSize = false;
+      return false;
+    } else if (searchType === "REPOSITORY") {
       return (
         node.pushedAt >= filterVars.m_GR_pushedAt &&
         node.stargazerCount >= filterVars.m_GR_stargazerCount
@@ -26,8 +30,14 @@ export default function filterResponse(data, searchType, filterVars) {
     }
   });
 
+  !supportedDataSize &&
+    (search.nodes = {
+      supportMessage:
+        "The GitHub GraphQL API couldn't process this request because the query is too complex. Try requesting fewer fields or reducing the number of results.",
+    });
+
   !supportedSearchType &&
-    (search.searchTypeMessage = `The filtering feature is not available for "${searchType}" search type yet.`);
+    (search.supportMessage = `The filtering feature is not available for "${searchType}" search type yet.`);
 
   search.selectedNodesCount = search.nodes.length;
 

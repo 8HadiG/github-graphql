@@ -3,8 +3,10 @@ query (
   $G_repositoryCount: Boolean! = false
   $G_issueCount: Boolean! = false
   $GI_url: Boolean! = false
+  $GR_assignableUsers: Boolean! = false
   $GR_assignableUsers_first: Int! = 1
   $GR_assignableUsersTotalCount: Boolean! = false
+  $GR_collaborators: Boolean! = false
   $GR_collaborators_first: Int! = 1
   $GR_collaboratorsTotalCount: Boolean! = false
   $GR_createdAt: Boolean! = false
@@ -20,13 +22,16 @@ query (
   $GR_isTemplate: Boolean! = false
   $GR_name: Boolean! = false
   $GR_nameWithOwner: Boolean! = false
+  $GR_primaryLanguage: Boolean! = false
   $GR_primaryLanguageName: Boolean! = false
   $GR_pushedAt: Boolean! = false
+  $GR_repositoryTopics: Boolean! = false
   $GR_repositoryTopics_first: Int! = 1
   $GR_repositoryTopicsTotalCount: Boolean! = false
   $GR_repositoryTopicsName: Boolean! = false
   $GR_stargazerCount: Boolean! = false
   $GR_url: Boolean! = false
+  $GR_watchers: Boolean! = false
   $GR_watchers_first: Int! = 1
   $GR_watchersTotalCount: Boolean! = false
   $S_after: String = null
@@ -40,11 +45,13 @@ query (
 
     nodes {
       ... on Repository {
-        assignableUsers(first: $GR_assignableUsers_first) {
+        assignableUsers(first: $GR_assignableUsers_first)
+          @include(if: $GR_assignableUsers) {
           totalCount @include(if: $GR_assignableUsersTotalCount)
         }
 
-        collaborators(first: $GR_collaborators_first) {
+        collaborators(first: $GR_collaborators_first)
+          @include(if: $GR_collaborators) {
           totalCount @include(if: $GR_collaboratorsTotalCount)
         }
 
@@ -62,13 +69,14 @@ query (
         name @include(if: $GR_name)
         nameWithOwner @include(if: $GR_nameWithOwner)
 
-        primaryLanguage {
+        primaryLanguage @include(if: $GR_primaryLanguage) {
           name @include(if: $GR_primaryLanguageName)
         }
 
         pushedAt @include(if: $GR_pushedAt)
 
-        repositoryTopics(first: $GR_repositoryTopics_first) {
+        repositoryTopics(first: $GR_repositoryTopics_first)
+          @include(if: $GR_repositoryTopics) {
           totalCount @include(if: $GR_repositoryTopicsTotalCount)
 
           nodes {
@@ -81,7 +89,7 @@ query (
         stargazerCount @include(if: $GR_stargazerCount)
         url @include(if: $GR_url)
 
-        watchers(first: $GR_watchers_first) {
+        watchers(first: $GR_watchers_first) @include(if: $GR_watchers) {
           totalCount @include(if: $GR_watchersTotalCount)
         }
       }
@@ -90,11 +98,13 @@ query (
         url @include(if: $GI_url)
 
         repository {
-          assignableUsers(first: $GR_assignableUsers_first) {
+          assignableUsers(first: $GR_assignableUsers_first)
+            @include(if: $GR_assignableUsers) {
             totalCount @include(if: $GR_assignableUsersTotalCount)
           }
 
-          collaborators(first: $GR_collaborators_first) {
+          collaborators(first: $GR_collaborators_first)
+            @include(if: $GR_collaborators) {
             totalCount @include(if: $GR_collaboratorsTotalCount)
           }
 
@@ -112,13 +122,14 @@ query (
           name @include(if: $GR_name)
           nameWithOwner @include(if: $GR_nameWithOwner)
 
-          primaryLanguage {
+          primaryLanguage @include(if: $GR_primaryLanguage) {
             name @include(if: $GR_primaryLanguageName)
           }
 
           pushedAt @include(if: $GR_pushedAt)
 
-          repositoryTopics(first: $GR_repositoryTopics_first) {
+          repositoryTopics(first: $GR_repositoryTopics_first)
+            @include(if: $GR_repositoryTopics) {
             totalCount @include(if: $GR_repositoryTopicsTotalCount)
 
             nodes {
@@ -131,7 +142,7 @@ query (
           stargazerCount @include(if: $GR_stargazerCount)
           url @include(if: $GR_url)
 
-          watchers(first: $GR_watchers_first) {
+          watchers(first: $GR_watchers_first) @include(if: $GR_watchers) {
             totalCount @include(if: $GR_watchersTotalCount)
           }
         }
