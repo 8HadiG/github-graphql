@@ -1,35 +1,145 @@
 query (
-  $getIssueCount: Boolean! = false
-  $getPageInfo: Boolean! = false
-  $getPushedAt: Boolean! = false
-  $getStargazerCount: Boolean! = false
-  $getUrl: Boolean! = false
-  $searchAfter: String = null
-  $searchFirst: Int! = 1
-  $searchQuery: String! = ""
-  $searchType: SearchType! = ISSUE
+  $G_pageInfo: Boolean! = false
+  $G_repositoryCount: Boolean! = false
+  $G_issueCount: Boolean! = false
+  $GI_url: Boolean! = false
+  $GR_assignableUsersTotalCount: Boolean! = false
+  $GR_collaboratorsTotalCount: Boolean! = false
+  $GR_createdAt: Boolean! = false
+  $GR_description: Boolean! = false
+  $GR_diskUsage: Boolean! = false
+  $GR_forkCount: Boolean! = false
+  $GR_isArchived: Boolean! = false
+  $GR_isDisabled: Boolean! = false
+  $GR_isFork: Boolean! = false
+  $GR_isInOrganization: Boolean! = false
+  $GR_isLocked: Boolean! = false
+  $GR_isMirror: Boolean! = false
+  $GR_isTemplate: Boolean! = false
+  $GR_name: Boolean! = false
+  $GR_nameWithOwner: Boolean! = false
+  $GR_primaryLanguageName: Boolean! = false
+  $GR_pushedAt: Boolean! = false
+  $GR_repositoryTopicsTotalCount: Boolean! = false
+  $GR_repositoryTopicsName: Boolean! = false
+  $GR_stargazerCount: Boolean! = false
+  $GR_url: Boolean! = false
+  $GR_watchersTotalCount: Boolean! = false
+  $S_after: String = null
+  $S_first: Int! = 1
+  $S_query: String! = ""
+  $S_type: SearchType! = REPOSITORY
 ) {
-  search(
-    after: $searchAfter
-    first: $searchFirst
-    query: $searchQuery
-    type: $searchType
-  ) {
-    issueCount @include(if: $getIssueCount)
+  search(after: $S_after, first: $S_first, query: $S_query, type: $S_type) {
+    repositoryCount @include(if: $G_repositoryCount)
+    issueCount @include(if: $G_issueCount)
+
     nodes {
+      ... on Repository {
+        assignableUsers {
+          totalCount @include(if: $GR_assignableUsersTotalCount)
+        }
+
+        collaborators {
+          totalCount @include(if: $GR_collaboratorsTotalCount)
+        }
+
+        createdAt @include(if: $GR_createdAt)
+        description @include(if: $GR_description)
+        diskUsage @include(if: $GR_diskUsage)
+        forkCount @include(if: $GR_forkCount)
+        isArchived @include(if: $GR_isArchived)
+        isDisabled @include(if: $GR_isDisabled)
+        isFork @include(if: $GR_isFork)
+        isInOrganization @include(if: $GR_isInOrganization)
+        isLocked @include(if: $GR_isLocked)
+        isMirror @include(if: $GR_isMirror)
+        isTemplate @include(if: $GR_isTemplate)
+        name @include(if: $GR_name)
+        nameWithOwner @include(if: $GR_nameWithOwner)
+
+        primaryLanguage {
+          name @include(if: $GR_primaryLanguageName)
+        }
+
+        pushedAt @include(if: $GR_pushedAt)
+
+        repositoryTopics {
+          totalCount @include(if: $GR_repositoryTopicsTotalCount)
+
+          nodes {
+            topic {
+              name @include(if: $GR_repositoryTopicsName)
+            }
+          }
+        }
+
+        stargazerCount @include(if: $GR_stargazerCount)
+        url @include(if: $GR_url)
+
+        watchers {
+          totalCount @include(if: $GR_watchersTotalCount)
+        }
+      }
+
       ... on Issue {
-        url @include(if: $getUrl)
+        url @include(if: $GI_url)
+
         repository {
-          stargazerCount @include(if: $getStargazerCount)
-          pushedAt @include(if: $getPushedAt)
+          assignableUsers {
+            totalCount @include(if: $GR_assignableUsersTotalCount)
+          }
+
+          collaborators {
+            totalCount @include(if: $GR_collaboratorsTotalCount)
+          }
+
+          createdAt @include(if: $GR_createdAt)
+          description @include(if: $GR_description)
+          diskUsage @include(if: $GR_diskUsage)
+          forkCount @include(if: $GR_forkCount)
+          isArchived @include(if: $GR_isArchived)
+          isDisabled @include(if: $GR_isDisabled)
+          isFork @include(if: $GR_isFork)
+          isInOrganization @include(if: $GR_isInOrganization)
+          isLocked @include(if: $GR_isLocked)
+          isMirror @include(if: $GR_isMirror)
+          isTemplate @include(if: $GR_isTemplate)
+          name @include(if: $GR_name)
+          nameWithOwner @include(if: $GR_nameWithOwner)
+
+          primaryLanguage {
+            name @include(if: $GR_primaryLanguageName)
+          }
+
+          pushedAt @include(if: $GR_pushedAt)
+
+          repositoryTopics {
+            totalCount @include(if: $GR_repositoryTopicsTotalCount)
+
+            nodes {
+              topic {
+                name @include(if: $GR_repositoryTopicsName)
+              }
+            }
+          }
+
+          stargazerCount @include(if: $GR_stargazerCount)
+          url @include(if: $GR_url)
+
+          watchers {
+            totalCount @include(if: $GR_watchersTotalCount)
+          }
         }
       }
     }
-    pageInfo @include(if: $getPageInfo) {
+
+    pageInfo @include(if: $G_pageInfo) {
       hasNextPage
       endCursor
     }
   }
+
   rateLimit {
     cost
     remaining

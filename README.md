@@ -2,7 +2,7 @@
 
 Search across GitHub via its GraphQL API.
 
-- For now only ISSUE search type works.
+- For now only `REPOSITORY`, `ISSUE` search types works.
 
 ## How to setup?
 
