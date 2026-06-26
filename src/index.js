@@ -9,11 +9,12 @@ dotenv.config();
 
 const query = readText(PATHS.query);
 const variables = readJson(PATHS.apiVars);
-const filterVars = readJson(PATHS.filterVars);
 
 const data = await githubSearch(query, variables);
 
 const searchType = variables.S_type;
+const filterVars = readJson(PATHS.filterVars);
+
 const filteredData = filterResponse(data, searchType, filterVars);
 
 writeJson(PATHS.results, filteredData);

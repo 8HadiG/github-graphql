@@ -5,17 +5,20 @@ export default function filterResponse(data, searchType, filterVars) {
   const search = data.data.search;
 
   search.apiNodesCount = search.nodes.length;
+  if (search.apiNodesCount === 0) {
+    supportedSearchType = false;
+  }
 
   search.nodes = search.nodes.filter((node) => {
     if (searchType === "REPOSITORY") {
       return (
-        node.repository.stargazerCount >= filterVars.m_GR_stargazerCount &&
-        node.repository.pushedAt >= filterVars.m_GR_pushedAt
+        node.pushedAt >= filterVars.m_GR_pushedAt &&
+        node.stargazerCount >= filterVars.m_GR_stargazerCount
       );
     } else if (searchType === "ISSUE") {
       return (
-        node.repository.stargazerCount >= filterVars.m_GR_stargazerCount &&
-        node.repository.pushedAt >= filterVars.m_GR_pushedAt
+        node.repository.pushedAt >= filterVars.m_GR_pushedAt &&
+        node.repository.stargazerCount >= filterVars.m_GR_stargazerCount
       );
     } else {
       supportedSearchType = false;
@@ -24,7 +27,7 @@ export default function filterResponse(data, searchType, filterVars) {
   });
 
   !supportedSearchType &&
-    (search.message = `The filtering feature is not available for "${searchType}" search type yet.`);
+    (search.searchTypeMessage = `The filtering feature is not available for "${searchType}" search type yet.`);
 
   search.selectedNodesCount = search.nodes.length;
 

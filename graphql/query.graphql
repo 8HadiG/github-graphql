@@ -3,7 +3,9 @@ query (
   $G_repositoryCount: Boolean! = false
   $G_issueCount: Boolean! = false
   $GI_url: Boolean! = false
+  $GR_assignableUsers_first: Int! = 1
   $GR_assignableUsersTotalCount: Boolean! = false
+  $GR_collaborators_first: Int! = 1
   $GR_collaboratorsTotalCount: Boolean! = false
   $GR_createdAt: Boolean! = false
   $GR_description: Boolean! = false
@@ -20,10 +22,12 @@ query (
   $GR_nameWithOwner: Boolean! = false
   $GR_primaryLanguageName: Boolean! = false
   $GR_pushedAt: Boolean! = false
+  $GR_repositoryTopics_first: Int! = 1
   $GR_repositoryTopicsTotalCount: Boolean! = false
   $GR_repositoryTopicsName: Boolean! = false
   $GR_stargazerCount: Boolean! = false
   $GR_url: Boolean! = false
+  $GR_watchers_first: Int! = 1
   $GR_watchersTotalCount: Boolean! = false
   $S_after: String = null
   $S_first: Int! = 1
@@ -36,11 +40,11 @@ query (
 
     nodes {
       ... on Repository {
-        assignableUsers {
+        assignableUsers(first: $GR_assignableUsers_first) {
           totalCount @include(if: $GR_assignableUsersTotalCount)
         }
 
-        collaborators {
+        collaborators(first: $GR_collaborators_first) {
           totalCount @include(if: $GR_collaboratorsTotalCount)
         }
 
@@ -64,7 +68,7 @@ query (
 
         pushedAt @include(if: $GR_pushedAt)
 
-        repositoryTopics {
+        repositoryTopics(first: $GR_repositoryTopics_first) {
           totalCount @include(if: $GR_repositoryTopicsTotalCount)
 
           nodes {
@@ -77,7 +81,7 @@ query (
         stargazerCount @include(if: $GR_stargazerCount)
         url @include(if: $GR_url)
 
-        watchers {
+        watchers(first: $GR_watchers_first) {
           totalCount @include(if: $GR_watchersTotalCount)
         }
       }
@@ -86,11 +90,11 @@ query (
         url @include(if: $GI_url)
 
         repository {
-          assignableUsers {
+          assignableUsers(first: $GR_assignableUsers_first) {
             totalCount @include(if: $GR_assignableUsersTotalCount)
           }
 
-          collaborators {
+          collaborators(first: $GR_collaborators_first) {
             totalCount @include(if: $GR_collaboratorsTotalCount)
           }
 
@@ -114,7 +118,7 @@ query (
 
           pushedAt @include(if: $GR_pushedAt)
 
-          repositoryTopics {
+          repositoryTopics(first: $GR_repositoryTopics_first) {
             totalCount @include(if: $GR_repositoryTopicsTotalCount)
 
             nodes {
@@ -127,7 +131,7 @@ query (
           stargazerCount @include(if: $GR_stargazerCount)
           url @include(if: $GR_url)
 
-          watchers {
+          watchers(first: $GR_watchers_first) {
             totalCount @include(if: $GR_watchersTotalCount)
           }
         }
