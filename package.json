@@ -1,0 +1,25 @@
+{
+  "name": "github-graphql",
+  "version": "1.0.0",
+  "description": "Search across GitHub via its GraphQL API for Unix/Linux.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8HadiG/github-graphql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/8HadiG/github-graphql/issues"
+  },
+  "homepage": "https://github.com/8HadiG/github-graphql#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

@@ -1,3 +1,7 @@
 .env
-curl_output.json
+
+
+/node_modules/
+
+/curl_output.json
 /results.json
