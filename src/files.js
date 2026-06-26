@@ -1,13 +1,15 @@
 import fs from "fs";
+import path from "path";
 
-export function readText(path) {
-  return fs.readFileSync(path, "utf8");
+export function readText(filePath) {
+  return fs.readFileSync(filePath, "utf8");
 }
 
-export function readJson(path) {
-  return JSON.parse(fs.readFileSync(path, "utf8"));
+export function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
-export function writeJson(path, data) {
-  fs.writeFileSync(path, JSON.stringify(data, null, 2));
+export function writeJson(filePath, data) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }

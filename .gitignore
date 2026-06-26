@@ -3,5 +3,4 @@
 
 /node_modules/
 
-/curl_output.json
-/results.json
+/output/results.json

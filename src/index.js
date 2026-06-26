@@ -13,7 +13,8 @@ const filterVars = readJson(PATHS.filterVars);
 
 const data = await githubSearch(query, variables);
 
-const filteredData = filterResponse(data, filterVars);
+const searchType = variables.searchType;
+const filteredData = filterResponse(data, searchType, filterVars);
 
 writeJson(PATHS.results, filteredData);
 
