@@ -16,13 +16,13 @@ export default function filterResponse(data, searchType, filterVars) {
       return false;
     } else if (searchType === "REPOSITORY") {
       return (
-        node.pushedAt >= filterVars.m_GR_pushedAt &&
-        node.stargazerCount >= filterVars.m_GR_stargazerCount
+        node.pushedAt >= filterVars.GR_pushedAt_m &&
+        node.stargazerCount >= filterVars.GR_stargazerCount_m
       );
     } else if (searchType === "ISSUE") {
       return (
-        node.repository.pushedAt >= filterVars.m_GR_pushedAt &&
-        node.repository.stargazerCount >= filterVars.m_GR_stargazerCount
+        node.repository.pushedAt >= filterVars.GR_pushedAt_m &&
+        node.repository.stargazerCount >= filterVars.GR_stargazerCount_m
       );
     } else {
       supportedSearchType = false;
