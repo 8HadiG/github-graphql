@@ -2,7 +2,7 @@
 
 Search across GitHub via its GraphQL API.
 
-- For now only `REPOSITORY`, `ISSUE` search types works.
+- Currently only `REPOSITORY`, `ISSUE` search types works.
 
 ## How to setup?
 
@@ -25,7 +25,7 @@ Search across GitHub via its GraphQL API.
 
 5. Optional: If you are using `VS Code`, you can install `GraphQL: Language Feature Support` extension.
 6. Rename the `.env.example` file to `.env`.
-7. Create a github personal access token (see [PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)).
+7. Create a github personal access token ([PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)).
 8. Write your GitHub access token after `GITHUB_TOKEN=` inside the `.env` file.
 
 ## How to run?
@@ -37,4 +37,4 @@ Search across GitHub via its GraphQL API.
       npm start
    ```
 
-3. See results from output/results.json.
+3. Find results at `output/results.json`.
